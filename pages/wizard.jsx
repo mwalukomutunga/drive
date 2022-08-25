@@ -67,12 +67,17 @@ const UserForm = () => {
 
   const handleIdChange = (e) => {
     requests.get("Pastoralist/idno/" + e.target.value).then((res) => {
-      setInputs({...res,user: user?.user?.email,idNo: e.target.value,nokPaymentMethod: "M-pesa" });
+      setInputs({
+        ...res,
+        user: user?.user?.email,
+        idNo: e.target.value,
+        nokPaymentMethod: "M-pesa",
+      });
     });
     setInputs((inputs) => ({
       ...inputs,
       nokPaymentMethod: e?.target?.value,
-    }))
+    }));
   };
 
   const handleInputChange = (event) => {
@@ -81,7 +86,7 @@ const UserForm = () => {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-    console.log(input)
+    console.log(input);
   };
 
   const handleNOKRegionChange = (e, action) => {
@@ -175,13 +180,11 @@ const UserForm = () => {
     }));
   };
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
     handleUpLoad();
     requests.post("/Registrations/", input).then((res) => {
       console.log(res);
-     
     });
   };
 
@@ -237,7 +240,6 @@ const UserForm = () => {
       <Script src="/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></Script>
       <Script src="/assets/js/pages/form-wizard.init.js"></Script>
       <div className="row">
-      
         <div className="col-xl-12">
           <div className="card">
             <div className="card-body">
@@ -245,7 +247,7 @@ const UserForm = () => {
               <form onSubmit={(e) => handleSubmit(e)} noValidate>
                 <div id="basicwizard">
                   <ul className="nav nav-pills nav-justified form-wizard-header mb-4">
-                    <li className="nav-item">
+                    <li className="nav-item ">
                       <a
                         href="#basictab1"
                         data-bs-toggle="tab"
@@ -629,12 +631,13 @@ const UserForm = () => {
                     </div>
 
                     <div className="tab-pane" id="basictab4">
-                      <div className="row">
-                        {/* ------------------------------------- */}
-                        <div className="col-3 card">
+                      <div class="row">
+                        <div class="col-sm">
+                           {/* ------------------------------------- */}
+                        <div className="col-12 card">
                           <div className="card-body">
                             <h5 className="card-title">Goats</h5>
-                            <div className="mb-2 row ">
+                            <div className="mb-2">
                               <div className="col-md-12">
                                 <input
                                   type="number"
@@ -647,7 +650,7 @@ const UserForm = () => {
                                 />
                               </div>
                             </div>
-                            <div className="mb-2 row">
+                            <div className="mb-2">
                               <div className="col-md-12">
                                 <input
                                   type="number"
@@ -663,11 +666,14 @@ const UserForm = () => {
                           </div>
                         </div>
                         {/* .................................................... */}
+                        </div>
+                        <div class="col-sm">
+                          
                         {/* ------------------------------------- */}
-                        <div className="col-3 card">
+                        <div className="col-12 card">
                           <div className="card-body">
                             <h5 className="card-title">Cows</h5>
-                            <div className="mb-2 row ">
+                            <div className="mb-2">
                               <div className="col-md-12">
                                 <input
                                   type="text"
@@ -696,11 +702,14 @@ const UserForm = () => {
                           </div>
                         </div>
                         {/* .................................................... */}
+                        </div>
+                        <div class="col-sm">
+                          
                         {/* ------------------------------------- */}
-                        <div className="col-3 card">
+                        <div className="col-12 card">
                           <div className="card-body">
                             <h5 className="card-title">Camels</h5>
-                            <div className="mb-2 row ">
+                            <div className="mb-2 ">
                               <div className="col-md-12">
                                 <input
                                   type="number"
@@ -729,11 +738,15 @@ const UserForm = () => {
                           </div>
                         </div>
                         {/* .................................................... */}
-                        {/* ------------------------------------- */}
-                        <div className="col-3 card">
+                        </div>
+                      </div>
+                      <div className="row">
+                       
+                      <div class="col-sm">
+                        <div className="col-12 card">
                           <div className="card-body">
                             <h5 className="card-title">Calfs</h5>
-                            <div className="mb-2 row ">
+                            <div className="mb-2">
                               <div className="col-md-12">
                                 <input
                                   type="number"
@@ -760,6 +773,7 @@ const UserForm = () => {
                               </div>
                             </div>
                           </div>
+                        </div>
                         </div>
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
@@ -796,10 +810,11 @@ const UserForm = () => {
                         </div> */}
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
-                        <div className="col-3 card ml-4">
+                        <div class="col-sm">
+                        <div className="col-12 card ml-4">
                           <div className="card-body">
                             <h5 className="card-title">Oxen</h5>
-                            <div className="mb-2 row ">
+                            <div className="mb-2">
                               <div className="col-md-12">
                                 <input
                                   type="number"
@@ -827,12 +842,14 @@ const UserForm = () => {
                             </div>
                           </div>
                         </div>
+                        </div>
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
-                        <div className="col-3 card ml-1">
+                        <div class="col-sm">
+                        <div className="col-12 card ml-1">
                           <div className="card-body">
                             <h5 className="card-title">Sheep</h5>
-                            <div className="mb-2 row ">
+                            <div className="mb-2">
                               <div className="col-md-12">
                                 <input
                                   type="number"
@@ -859,6 +876,7 @@ const UserForm = () => {
                               </div>
                             </div>
                           </div>
+                        </div>
                         </div>
                         {/* .................................................... */}
                       </div>
