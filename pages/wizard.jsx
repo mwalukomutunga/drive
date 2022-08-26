@@ -710,8 +710,8 @@ const UserForm = () => {
                     </div>
 
                     <div className="tab-pane" id="basictab4">
-                      <div class="row">
-                        <div class="col-sm">
+                      <div className="row">
+                        <div className="col-sm">
                           {/* ------------------------------------- */}
                           <div className="col-12 card">
                             <div className="card-body">
@@ -746,7 +746,7 @@ const UserForm = () => {
                           </div>
                           {/* .................................................... */}
                         </div>
-                        <div class="col-sm">
+                        <div className="col-sm">
                           {/* ------------------------------------- */}
                           <div className="col-12 card">
                             <div className="card-body">
@@ -781,7 +781,7 @@ const UserForm = () => {
                           </div>
                           {/* .................................................... */}
                         </div>
-                        <div class="col-sm">
+                        <div className="col-sm">
                           {/* ------------------------------------- */}
                           <div className="col-12 card">
                             <div className="card-body">
@@ -818,7 +818,7 @@ const UserForm = () => {
                         </div>
                       </div>
                       <div className="row">
-                        <div class="col-sm">
+                        <div className="col-sm">
                           <div className="col-12 card">
                             <div className="card-body">
                               <h5 className="card-title">Calfs</h5>
@@ -886,7 +886,7 @@ const UserForm = () => {
                         </div> */}
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
-                        <div class="col-sm">
+                        <div className="col-sm">
                           <div className="col-12 card ml-4">
                             <div className="card-body">
                               <h5 className="card-title">Oxen</h5>
@@ -921,7 +921,7 @@ const UserForm = () => {
                         </div>
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
-                        <div class="col-sm">
+                        <div className="col-sm">
                           <div className="col-12 card ml-1">
                             <div className="card-body">
                               <h5 className="card-title">Sheep</h5>

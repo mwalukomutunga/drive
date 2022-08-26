@@ -29,7 +29,7 @@ function MyDropzone({text, name, setInputs }) {
     </span>
   ));
   return (
-    <div class="col-sm mr-2 mt-2">
+    <div className="col-sm mr-2 mt-2">
                           <div {...getRootProps({ className: "dropzone" })}>
                             <input {...getInputProps()} />
                             <p>Drag and drop pastoralist <span style ={{color:'blue'}}>{text}</span>, or click to select file</p>
