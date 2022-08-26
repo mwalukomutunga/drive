@@ -1,14 +1,23 @@
-import React, { useCallback } from "react";
+import React, { useCallback,useState } from "react";
 import { useDropzone } from "react-dropzone";
+import requests from "../agent";
+import { useSelector, useDispatch } from "react-redux";
 
 function MyDropzone({text, name, setInputs }) {
-  const onDrop = useCallback((acceptedFiles) => {    
-    setInputs(prev => {
-        return { 
-          ...prev, 
-          [name]: acceptedFiles[0]
-        }
-      });
+  const [isloading,setLoading] = useState(false)
+  const user = useSelector((state) => state.user);
+  const onDrop = useCallback((acceptedFiles) => { 
+    
+    const formData = new FormData();
+    formData.append("files", acceptedFiles[0]);
+    setLoading(true)
+    requests.post("/uploads/" + user?.user?.email, formData).then((res) => {
+      setInputs((inputs) => ({
+        ...inputs,
+        [name]: res,
+      }));      
+    });
+    setLoading(false)
   }, []);
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -25,7 +34,7 @@ function MyDropzone({text, name, setInputs }) {
                             <input {...getInputProps()} />
                             <p>Drag and drop pastoralist <span style ={{color:'blue'}}>{text}</span>, or click to select file</p>
                             <em>
-                              (only one file can be uploaded.)
+                              (only one file can be uploaded.) <br/> { <em>{files}</em>}
                             </em>
                           </div>
                         </div>

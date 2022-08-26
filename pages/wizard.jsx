@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useDropzone } from "react-dropzone";
 import React, { useCallback, useEffect, useState } from "react";
 import requests from "../agent";
 import { useRouter } from "next/router";
@@ -50,13 +49,17 @@ const UserForm = () => {
     user: "",
   });
   const [regions, setRegions] = useState([]);
+  const [ndviUnits, setNdviUnits] = useState([{ name: "WAMBA WEST" }]);
   const [counties, setCounties] = useState([]);
   const [subcounties, setSubCounties] = useState([]);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [wards, setWards] = useState([]);
+  const [idFiles, setIdFiles] = useState({});
+  const [passportFile, setPassportFile] = useState({});
   const router = useRouter();
   const user = useSelector((state) => state.user);
+
   useEffect(() => {
     if (user && user.isLogged && user.isLogged === true) {
     } else {
@@ -79,7 +82,7 @@ const UserForm = () => {
   }, [user?.user?.email, user]);
 
   const handleIdChange = (e) => {
-    requests.get("Pastoralist/idno/" + e.target.value).then((res) => {
+    requests.get("Pastoralist/idno/" + e.target.value).then((res) => {     
       setInputs({
         ...res,
         user: user?.user?.email,
@@ -89,7 +92,7 @@ const UserForm = () => {
         gender: "Male",
         nokGender: "Male",
         latitude: latitude?.latitude,
-        longitude: longitude?.longitude,
+        longitude: longitude?.longitude
       });
     });
   };
@@ -101,7 +104,11 @@ const UserForm = () => {
     const name = target.name;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
-
+  const handleIbliChange = (event) => {
+    event.persist();
+    const target = event.target;
+    setInputs((inputs) => ({ ...inputs, ndviUnit: target.value }));
+  };
   const handleNOKRegionChange = (e, action) => {
     e.persist();
     const target = e.target;
@@ -194,59 +201,66 @@ const UserForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+   //  handleUpLoad();
     console.log(input);
-    // handleUpLoad();
     requests.post("/Registrations/", input).then((res) => {
       console.log(res);
     });
   };
 
-  const [files, setFiles] = useState([]);
-  const onDrop = useCallback((acceptedFiles) => {
-    setFiles(acceptedFiles);
-  }, []);
-  const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
-    useDropzone({
-      maxFiles: 10,
-      onDrop,
-      accept: {
-        "image/*": [".jpeg", ".jpg", ".gif", ".png"],
-      },
-    });
+  // const [files, setFiles] = useState([]);
+  // const onDrop = useCallback((acceptedFiles) => {
+  //   setFiles(acceptedFiles);
+  // }, []);
+  // const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
+  //   useDropzone({
+  //     maxFiles: 10,
+  //     onDrop,
+  //     accept: {
+  //       "image/*": [".jpeg", ".jpg", ".gif", ".png"],
+  //     },
+  //   });
 
   const handleUpLoad = () => {
+    console.log(idFiles);
+    console.log(passportFile);
     const formData = new FormData();
-    formData.append("files", files[0]);
-    for (var x = 1; x < files.length; x++) {
-      formData.append("files", files[x]);
-    }
+    formData.append("files", idFiles?.file);
     requests.post("/uploads/" + user?.user?.email, formData).then((res) => {
       setInputs((inputs) => ({
         ...inputs,
-        paths: res,
+        idpath: res,
       }));
-      router.push("/champions");
+    });
+
+    const formData1 = new FormData();
+    formData1.append("files", passportFile?.file);
+    requests.post("/uploads/" + user?.user?.email, formData1).then((res) => {
+      setInputs((inputs) => ({
+        ...inputs,
+        passportPath: res,
+      }));
     });
   };
 
-  const acceptedFileItems = acceptedFiles.map((file) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
+  // const acceptedFileItems = acceptedFiles.map((file) => (
+  //   <li key={file.path}>
+  //     {file.path} - {file.size} bytes
+  //   </li>
+  // ));
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
-    return (
-      <li key={file.path}>
-        {file.path} - {file.size} bytes
-        <ul>
-          {errors.map((e) => (
-            <li key={e.code}>{e.message}</li>
-          ))}
-        </ul>
-      </li>
-    );
-  });
+  // const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+  //   return (
+  //     <li key={file.path}>
+  //       {file.path} - {file.size} bytes
+  //       <ul>
+  //         {errors.map((e) => (
+  //           <li key={e.code}>{e.message}</li>
+  //         ))}
+  //       </ul>
+  //     </li>
+  //   );
+  // });
   return (
     <>
       {/* <Script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></Script> */}
@@ -279,7 +293,7 @@ const UserForm = () => {
                         className="nav-link"
                       >
                         <span className="number">2</span>
-                        <span className="d-none d-sm-inline">Bank info</span>
+                        <span className="d-none d-sm-inline">Payment info</span>
                       </a>
                     </li>
                     <li className="nav-item">
@@ -491,6 +505,25 @@ const UserForm = () => {
                               className="col-md-2 col-form-label"
                               htmlFor="example-placeholder"
                             >
+                              Account name
+                            </label>
+                            <div className="col-md-10">
+                              <input
+                                type="text"
+                                required
+                                className="form-control"
+                                placeholder="Account name"
+                                name="accountName"
+                                defaultValue={input?.accountName}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label
+                              className="col-md-2 col-form-label"
+                              htmlFor="example-placeholder"
+                            >
                               Bank Account No
                             </label>
                             <div className="col-md-10">
@@ -505,13 +538,32 @@ const UserForm = () => {
                               />
                             </div>
                           </div>
+                          <div className="mb-2 row">
+                            <label
+                              className="col-md-2 col-form-label"
+                              htmlFor="example-placeholder"
+                            >
+                              Mpesa number
+                            </label>
+                            <div className="col-md-10">
+                              <input
+                                type="text"
+                                required
+                                className="form-control"
+                                placeholder=" Mpesa number"
+                                name="mpesaNumber"
+                                defaultValue={input?.mpesaNumber}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
 
                           <div className="mb-2 row">
                             <label
                               className="col-md-2 col-form-label"
                               htmlFor="example-placeholder"
                             >
-                              Payment Method
+                              Preferred payout method
                             </label>
                             <div className="col-md-10">
                               <select
@@ -520,9 +572,7 @@ const UserForm = () => {
                                 className="form-control"
                               >
                                 <option>Mpesa</option>
-                                <option>Cash</option>
-                                <option>Visa</option>
-                                <option>MasterCard</option>
+                                <option>Bank</option>
                               </select>
                             </div>
                           </div>
@@ -590,6 +640,22 @@ const UserForm = () => {
                               >
                                 {subcounties?.map((item, index) => (
                                   <option key={index}>{item}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label className="col-md-2 col-form-label">
+                            NDVI unit
+                            </label>
+                            <div className="col-md-10">
+                              <select
+                                value={input?.ndviUnit}
+                                onChange={handleIbliChange}
+                                className="form-control"
+                              >
+                                {ndviUnits?.map((item, index) => (
+                                  <option key={index}>{item?.name}</option>
                                 ))}
                               </select>
                             </div>
@@ -970,6 +1036,25 @@ const UserForm = () => {
                             </div>
                           </div>
                           <div className="mb-2 row">
+                            <label
+                              className="col-md-2 col-form-label"
+                              htmlFor="example-placeholder"
+                            >
+                              Account name
+                            </label>
+                            <div className="col-md-10">
+                              <input
+                                type="text"
+                                required
+                                className="form-control"
+                                placeholder="Account name"
+                                name="nokAccountName"
+                                defaultValue={input?.nokAccountName}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
                             <label className="col-md-2 col-form-label">
                               Bank Account No
                             </label>
@@ -985,9 +1070,29 @@ const UserForm = () => {
                             </div>
                           </div>
 
+                          <div className="mb-2 row">
+                            <label
+                              className="col-md-2 col-form-label"
+                              htmlFor="example-placeholder"
+                            >
+                              Mpesa number
+                            </label>
+                            <div className="col-md-10">
+                              <input
+                                type="text"
+                                required
+                                className="form-control"
+                                placeholder=" Mpesa number"
+                                name="nokMpesaNumber"
+                                defaultValue={input?.nokMpesaNumber}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
+
                           {/* <div className="mb-2 row">
                             <label className="col-md-2 col-form-label">
-                              Payment Method
+                              Preffered payout method
                             </label>
                             <div className="col-md-10">
                               <select
@@ -1001,9 +1106,7 @@ const UserForm = () => {
                                 className="form-control"
                               >
                                 <option>Mpesa</option>
-                                <option>Cash</option>
-                                <option>Visa</option>
-                                <option>MasterCard</option>
+                                <option>Bank</option>
                               </select>
                             </div>
                           </div> */}
@@ -1124,8 +1227,16 @@ const UserForm = () => {
 
                     <div className="tab-pane" id="basictab6">
                       <div className="row">
-                       <MyDropzone text ='ID card' name="idpath" setInputs ={setInputs}/>
-                       <MyDropzone text ='Passport' name="passportPath" setInputs ={setInputs}/>                       
+                        <MyDropzone
+                          text="ID card"
+                          name="idpath"
+                          setInputs={setIdFiles}
+                        />
+                        <MyDropzone
+                          text="next of kin ID"
+                          name="passportPath"
+                          setInputs={setPassportFile}
+                        />
                         {/* <section> */}
 
                         {/* <aside>

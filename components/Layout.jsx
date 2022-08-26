@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
                       height="32"
                     />
                     <span className="pro-user-name ms-1">
-                      {user?.user?.name}{" "}
+                      {user?.user?.name}
                       <i className="mdi mdi-chevron-down"></i>
                     </span>
                   </a>
@@ -401,15 +401,7 @@ const Layout = ({ children }) => {
                   <span>My Registrations</span>
                 </a>
               </Link>
-            </li>
-            <li>
-              <Link href="/pendinguploads">
-                <a>
-                  <i className=" fas fa-spinner"></i>
-                  <span>Pending Uploads </span>
-                </a>
-              </Link>
-            </li>
+            </li>           
             <li>
               <Link href="/registered">
                 <a>
@@ -418,7 +410,14 @@ const Layout = ({ children }) => {
                 </a>
               </Link>
             </li>
-           
+            <li>
+              <Link href="/verifield">
+                <a>
+                  <i className=" fas fa-spinner"></i>
+                  <span>Unverifield </span>
+                </a>
+              </Link>
+            </li>
             <li>
               <Link href="/pastoralists">
                 <a>

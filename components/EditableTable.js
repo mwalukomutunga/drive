@@ -68,7 +68,7 @@ const Editable = ({
         {children}
       </Editing>
       <ColumnChooser enabled={true}  mode="select"/>
-      <StateStoring enabled={true} type="localStorage" storageKey="klipstorage" />
+      <StateStoring enabled={true} type="localStorage" storageKey="klipstorageEditable" />
       <Grouping contextMenuEnabled={true} />
       <Selection mode="multiple" />
       <Sorting mode="multiple" />

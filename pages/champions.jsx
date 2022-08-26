@@ -6,6 +6,7 @@ import Link from "next/link";
 import Editable from "../components/EditableTable";
 // const page = "/Registrations/phone/254710623337";
 
+
 const columns = [
   "user",
   "fullName",
@@ -26,6 +27,9 @@ const columns = [
   "ward",
   "village",
   "nokFullname",
+  "isKlip",
+  "hasId",
+  "hasPassPort",
 ];
 
 const Chambion = () => {

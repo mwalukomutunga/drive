@@ -6,7 +6,30 @@ import TextBox from "devextreme-react/text-box";
 import requests from "../agent";
 const page = "/Registrations/";
 
-const columns = ["user","fullName","idNo","age","houseHoldSize","gender","cattle","goats","sheep","camels","bankName","branch","bankACNo","mobilePhoneNo","county","subCounty","ward","village","nokFullname"];
+const columns = [
+  "user",
+  "fullName",
+  "idNo",
+  "age",
+  "houseHoldSize",
+  "gender",
+  "cattle",
+  "goats",
+  "sheep",
+  "camels",
+  "bankName",
+  "branch",
+  "bankACNo",
+  "mobilePhoneNo",
+  "county",
+  "subCounty",
+  "ward",
+  "village",
+  "nokFullname",
+  "isKlip",
+  "hasId",
+  "hasPassPort",
+];
 
 const Registered = () => {
   const [data, setData] = useState([]);
@@ -27,23 +50,23 @@ const Registered = () => {
     requests.put(page + e.id, e);
   };
 
-  return (    
+  return (
     <div className="row">
-    <div className="col-xl-12">
-      <div className="card">
-        <div className="card-body">
-          <h4 className="header-title mb-3"> Registered Pastoralist </h4>
-          <DataTable
-            columns={columns}
-            dataSource={data}
-            title="SYS Titles"
-            handlesave={handleSave}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-            width={500}
-            height={350}
-          >
-            {/* <Form colCount={1}>
+      <div className="col-xl-12">
+        <div className="card">
+          <div className="card-body">
+            <h4 className="header-title mb-3"> Registered Pastoralist </h4>
+            <DataTable
+              columns={columns}
+              dataSource={data}
+              title="SYS Titles"
+              handlesave={handleSave}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+              width={500}
+              height={350}
+            >
+              {/* <Form colCount={1}>
         <Item>
           <TextBox
             onValueChanged={(e) => {
@@ -56,12 +79,11 @@ const Registered = () => {
           <Label text="Title" />
         </Item>
       </Form> */}
-          </DataTable>
+            </DataTable>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-   
   );
 };
 
