@@ -398,15 +398,7 @@ const Layout = ({ children }) => {
               <Link href="/champions">
                 <a>
                 <i className="fas fa-address-card"></i>
-                  <span>My Registered</span>
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/registered">
-                <a>
-                  <i className="fas fa-list-ul"></i>
-                  <span>Aggregated </span>
+                  <span>My Registrations</span>
                 </a>
               </Link>
             </li>
@@ -418,6 +410,15 @@ const Layout = ({ children }) => {
                 </a>
               </Link>
             </li>
+            <li>
+              <Link href="/registered">
+                <a>
+                  <i className="fas fa-list-ul"></i>
+                  <span>Aggregated </span>
+                </a>
+              </Link>
+            </li>
+           
             <li>
               <Link href="/pastoralists">
                 <a>

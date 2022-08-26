@@ -29,9 +29,9 @@ const Pastoralist = () => {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState({});
   useEffect(() => {
-    requests.get(page).then((response) => {
-      setData(response);
-    });
+    // requests.get(page).then((response) => {
+    //   setData(response);
+    // });
   }, []);
 
   const handleSave = (e) => {
@@ -52,7 +52,7 @@ const Pastoralist = () => {
             <h4 className="header-title mb-3"> Klip Pastoralist </h4>
             <DataTable
               columns={columns}
-              dataSource={data}
+              dataSource='/klip.json'              
               title="SYS Titles"
               handlesave={handleSave}
               handleDelete={handleDelete}
@@ -80,6 +80,18 @@ const Pastoralist = () => {
     </div>
   );
 };
+// export async function getServerSideProps({ req, res }) {
+//   res.setHeader(
+//     'Cache-Control',
+//     'public, s-maxage=36000, stale-while-revalidate=5900000'
+//   )
+//   const pastoralists = await requests.get("Pastoralist");  
+//   return {
+//     props: {
+//       pastoralists,
+//     },
+//   }
+// }
 // export async function getServerSideProps() {
 //   const pastoralists = await requests.get("Pastoralist");  
 //   return {

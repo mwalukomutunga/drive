@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
+import MyDropzone from "../components/DropZone";
 
 const UserForm = () => {
   const [input, setInputs] = useState({
@@ -51,6 +52,8 @@ const UserForm = () => {
   const [regions, setRegions] = useState([]);
   const [counties, setCounties] = useState([]);
   const [subcounties, setSubCounties] = useState([]);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [wards, setWards] = useState([]);
   const router = useRouter();
   const user = useSelector((state) => state.user);
@@ -63,6 +66,16 @@ const UserForm = () => {
     requests.get("Regions/regions").then((res) => {
       setRegions(res);
     });
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLatitude((inputs) => ({
+        ...inputs,
+        latitude: position.coords.latitude,
+      }));
+      setLongitude((inputs) => ({
+        ...inputs,
+        longitude: position.coords.longitude,
+      }));
+    });
   }, [user?.user?.email, user]);
 
   const handleIdChange = (e) => {
@@ -70,14 +83,15 @@ const UserForm = () => {
       setInputs({
         ...res,
         user: user?.user?.email,
+        username: user?.user?.name,
         idNo: e.target.value,
         nokPaymentMethod: "M-pesa",
+        gender: "Male",
+        nokGender: "Male",
+        latitude: latitude?.latitude,
+        longitude: longitude?.longitude,
       });
     });
-    setInputs((inputs) => ({
-      ...inputs,
-      nokPaymentMethod: e?.target?.value,
-    }));
   };
 
   const handleInputChange = (event) => {
@@ -86,7 +100,6 @@ const UserForm = () => {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-    console.log(input);
   };
 
   const handleNOKRegionChange = (e, action) => {
@@ -181,8 +194,8 @@ const UserForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    handleUpLoad();
+    console.log(input);
+    // handleUpLoad();
     requests.post("/Registrations/", input).then((res) => {
       console.log(res);
     });
@@ -325,7 +338,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="ID Number"
                                 required
@@ -357,7 +370,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 required
                                 placeholder="Age"
@@ -389,7 +402,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Household size"
                                 required
@@ -633,147 +646,144 @@ const UserForm = () => {
                     <div className="tab-pane" id="basictab4">
                       <div class="row">
                         <div class="col-sm">
-                           {/* ------------------------------------- */}
-                        <div className="col-12 card">
-                          <div className="card-body">
-                            <h5 className="card-title">Goats</h5>
-                            <div className="mb-2">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="total"
-                                  name="goats"
-                                  required
-                                  // defaultValue={input?.goats}
-                                  onChange={handleInputChange}
-                                />
+                          {/* ------------------------------------- */}
+                          <div className="col-12 card">
+                            <div className="card-body">
+                              <h5 className="card-title">Goats</h5>
+                              <div className="mb-2">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="total"
+                                    name="goats"
+                                    required
+                                    // defaultValue={input?.goats}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="mb-2">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="Insured"
-                                  name="goatInsured"
-                                  required=""
-                                  // defaultValue={input?.goatInsured}
-                                  onChange={handleInputChange}
-                                />
+                              <div className="mb-2">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Insured"
+                                    name="goatInsured"
+                                    required=""
+                                    // defaultValue={input?.goatInsured}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        {/* .................................................... */}
+                          {/* .................................................... */}
                         </div>
                         <div class="col-sm">
-                          
-                        {/* ------------------------------------- */}
-                        <div className="col-12 card">
-                          <div className="card-body">
-                            <h5 className="card-title">Cows</h5>
-                            <div className="mb-2">
-                              <div className="col-md-12">
-                                <input
-                                  type="text"
-                                  className="form-control"
-                                  placeholder="total"
-                                  name="cattle"
-                                  required
-                                  // defaultValue={input?.cattle}
-                                  onChange={handleInputChange}
-                                />
+                          {/* ------------------------------------- */}
+                          <div className="col-12 card">
+                            <div className="card-body">
+                              <h5 className="card-title">Cows</h5>
+                              <div className="mb-2">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="total"
+                                    name="cattle"
+                                    required
+                                    // defaultValue={input?.cattle}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="mb-2 row">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="Insured"
-                                  name="cattleInsured"
-                                  required
-                                  // defaultValue={input?.cattleInsured}
-                                  onChange={handleInputChange}
-                                />
+                              <div className="mb-2 row">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Insured"
+                                    name="cattleInsured"
+                                    required
+                                    // defaultValue={input?.cattleInsured}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        {/* .................................................... */}
+                          {/* .................................................... */}
                         </div>
                         <div class="col-sm">
-                          
-                        {/* ------------------------------------- */}
-                        <div className="col-12 card">
-                          <div className="card-body">
-                            <h5 className="card-title">Camels</h5>
-                            <div className="mb-2 ">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="total"
-                                  name="camels"
-                                  required
-                                  // defaultValue={input?.camels}
-                                  onChange={handleInputChange}
-                                />
+                          {/* ------------------------------------- */}
+                          <div className="col-12 card">
+                            <div className="card-body">
+                              <h5 className="card-title">Camels</h5>
+                              <div className="mb-2 ">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="total"
+                                    name="camels"
+                                    required
+                                    // defaultValue={input?.camels}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="mb-2 row">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="Insured"
-                                  name="camelsInsured"
-                                  required
-                                  // defaultValue={input?.camelsInsured}
-                                  onChange={handleInputChange}
-                                />
+                              <div className="mb-2 row">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Insured"
+                                    name="camelsInsured"
+                                    required
+                                    // defaultValue={input?.camelsInsured}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        {/* .................................................... */}
+                          {/* .................................................... */}
                         </div>
                       </div>
                       <div className="row">
-                       
-                      <div class="col-sm">
-                        <div className="col-12 card">
-                          <div className="card-body">
-                            <h5 className="card-title">Calfs</h5>
-                            <div className="mb-2">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="total"
-                                  name="calfs"
-                                  required
-                                  // defaultValue={input?.calfs}
-                                  onChange={handleInputChange}
-                                />
+                        <div class="col-sm">
+                          <div className="col-12 card">
+                            <div className="card-body">
+                              <h5 className="card-title">Calfs</h5>
+                              <div className="mb-2">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="total"
+                                    name="calfs"
+                                    required
+                                    // defaultValue={input?.calfs}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="mb-2 row">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="Insured"
-                                  name="calfsInsured"
-                                  required
-                                  // defaultValue={input?.calfsInsured}
-                                  onChange={handleInputChange}
-                                />
+                              <div className="mb-2 row">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Insured"
+                                    name="calfsInsured"
+                                    required
+                                    // defaultValue={input?.calfsInsured}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
                         </div>
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
@@ -811,72 +821,72 @@ const UserForm = () => {
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
                         <div class="col-sm">
-                        <div className="col-12 card ml-4">
-                          <div className="card-body">
-                            <h5 className="card-title">Oxen</h5>
-                            <div className="mb-2">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="total"
-                                  name="oxen"
-                                  required
-                                  // defaultValue={input?.oxen}
-                                  onChange={handleInputChange}
-                                />
+                          <div className="col-12 card ml-4">
+                            <div className="card-body">
+                              <h5 className="card-title">Oxen</h5>
+                              <div className="mb-2">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="total"
+                                    name="oxen"
+                                    required
+                                    // defaultValue={input?.oxen}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="mb-2 row">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="Insured"
-                                  name="oxenInsured"
-                                  required
-                                  // defaultValue={input?.oxenInsured}
-                                  onChange={handleInputChange}
-                                />
+                              <div className="mb-2 row">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Insured"
+                                    name="oxenInsured"
+                                    required
+                                    // defaultValue={input?.oxenInsured}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
                         </div>
                         {/* .................................................... */}
                         {/* ------------------------------------- */}
                         <div class="col-sm">
-                        <div className="col-12 card ml-1">
-                          <div className="card-body">
-                            <h5 className="card-title">Sheep</h5>
-                            <div className="mb-2">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="total"
-                                  name="number"
-                                  required
-                                  // defaultValue={input?.sheep}
-                                  onChange={handleInputChange}
-                                />
+                          <div className="col-12 card ml-1">
+                            <div className="card-body">
+                              <h5 className="card-title">Sheep</h5>
+                              <div className="mb-2">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="total"
+                                    name="number"
+                                    required
+                                    // defaultValue={input?.sheep}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="mb-2 row">
-                              <div className="col-md-12">
-                                <input
-                                  type="number"
-                                  className="form-control"
-                                  placeholder="Insured"
-                                  name="sheepInsured"
-                                  required
-                                  // defaultValue={input?.sheepInsured}
-                                  onChange={handleInputChange}
-                                />
+                              <div className="mb-2 row">
+                                <div className="col-md-12">
+                                  <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Insured"
+                                    name="sheepInsured"
+                                    required
+                                    // defaultValue={input?.sheepInsured}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
                         </div>
                         {/* .................................................... */}
                       </div>
@@ -896,7 +906,7 @@ const UserForm = () => {
                     </div>
                     <div className="tab-pane" id="basictab5">
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-sm">
                           <div className="mb-2 row">
                             <label className="col-md-2 col-form-label">
                               Full Name
@@ -919,7 +929,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="ID Number"
                                 name="nokidno"
@@ -998,7 +1008,7 @@ const UserForm = () => {
                             </div>
                           </div> */}
                         </div>
-                        <div className="col-6">
+                        <div className="col-sm">
                           <div className="mb-2 row">
                             <label className="col-md-2 col-form-label">
                               Relationship
@@ -1114,35 +1124,25 @@ const UserForm = () => {
 
                     <div className="tab-pane" id="basictab6">
                       <div className="row">
-                        <div className="col-12">
-                          <section>
-                            <div {...getRootProps({ className: "dropzone" })}>
-                              <input {...getInputProps()} />
-                              <p>
-                                Drag and drop farm images here, or click to
-                                select files
-                              </p>
-                              <em>
-                                (10 files are the maximum number of files you
-                                can drop here)
-                              </em>
-                            </div>
-                            <aside>
+                       <MyDropzone text ='ID card' name="idpath" setInputs ={setInputs}/>
+                       <MyDropzone text ='Passport' name="passportPath" setInputs ={setInputs}/>                       
+                        {/* <section> */}
+
+                        {/* <aside>
                               <h4>Accepted files</h4>
                               <ul>{acceptedFileItems}</ul>
                               <h4>Rejected files</h4>
                               <ul>{fileRejectionItems}</ul>
                             </aside>
-                          </section>
-                          <div className="d-grid text-center">
+                          </section> */}
+                        {/* <div className="d-grid text-center">
                             <button
                               onClick={() => handleUpLoad()}
                               className="btn btn-primary"
                             >
                               upload
                             </button>
-                          </div>
-                        </div>
+                          </div> */}
                       </div>
                       <ul className="pager wizard mb-0 list-inline mt-2">
                         <li className="previous list-inline-item">
