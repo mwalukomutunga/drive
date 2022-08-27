@@ -202,9 +202,10 @@ const UserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
    //  handleUpLoad();
-    console.log(input);
+    // console.log(input);
     requests.post("/Registrations/", input).then((res) => {
-      console.log(res);
+      // console.log(res);
+      router.push('/champions')
     });
   };
 
