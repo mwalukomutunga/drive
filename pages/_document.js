@@ -62,7 +62,7 @@ class MyDocument extends Document {
 
           <NextScript />
           <div className="rightbar-overlay"></div>
-          {/* <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> */}
+          <script async src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
           <script async src="/assets/js/vendor.min.js"></script>
           <script
             async

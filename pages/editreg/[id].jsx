@@ -471,7 +471,7 @@ const EditForm = () => {
                         </div>
                         <div className="col-sm">
                           <div className="mb-2 row">
-                            <div class="form-check">
+                            <div className="form-check">
                               <input
                                 name="group"
                                 className="form-check-input"
