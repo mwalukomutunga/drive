@@ -5,6 +5,7 @@ import requests from "../agent";
 import React from "react";
 import Link from "next/link";
 import { Column,Button } from "devextreme-react/data-grid";
+import { LoadIndicator } from "devextreme-react/load-indicator";
 import Editable from "../components/EditableTable";
 import Router from "next/router";
 // const page = "/Registrations/phone/254710623337";
@@ -12,6 +13,7 @@ import Router from "next/router";
 const Chambion = () => {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState({});
+  const [isloading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   useEffect(() => {
     requests
@@ -39,6 +41,12 @@ const Chambion = () => {
                 </a>
               </Link>
             </div>
+            {isloading && (
+              <div className="indicators">
+                <LoadIndicator id="large-indicator" height={60} width={60} />
+              </div>
+            )}
+              {!isloading &&
             <Editable
               dataSource={data}
               title="Chambion Registered"
@@ -75,15 +83,9 @@ const Chambion = () => {
                   icon="edit"
                   onClick={onAddButtonClick}
                   visible={true}
-                />
-                {/* <Button name="delete" />
-                <Button name="save" />
-                <Button name="cancel" /> */}
-              </Column>
-              {/* <Column dataField="user" />
-            <Column dataField="user" />
-            <Column dataField="user" /> */}
-            </Editable>
+                />              
+              </Column>           
+            </Editable>}
           </div>
         </div>
       </div>

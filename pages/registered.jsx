@@ -4,6 +4,7 @@ import { Item, RequiredRule } from "devextreme-react/form";
 import { Form, Label } from "devextreme-react/data-grid";
 import TextBox from "devextreme-react/text-box";
 import requests from "../agent";
+import { LoadIndicator } from "devextreme-react/load-indicator";
 const page = "/Registrations/";
 
 const columns = [
@@ -34,6 +35,7 @@ const columns = [
 const Registered = () => {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState({});
+  const [isloading, setLoading] = useState(false);
   useEffect(() => {
     requests.get(page).then((response) => {
       setData(response);
@@ -56,7 +58,12 @@ const Registered = () => {
         <div className="card">
           <div className="card-body">
             <h4 className="header-title mb-3"> Registered Pastoralist </h4>
-            <DataTable
+            {isloading && (
+              <div className="indicators">
+                <LoadIndicator id="large-indicator" height={60} width={60} />
+              </div>
+            )}
+             {!isloading && <DataTable
               columns={columns}
               dataSource={data}
               title="SYS Titles"
@@ -66,20 +73,7 @@ const Registered = () => {
               width={500}
               height={350}
             >
-              {/* <Form colCount={1}>
-        <Item>
-          <TextBox
-            onValueChanged={(e) => {
-              setInputs((prevState) => ({
-                inputs: { ...prevState.inputs, title: e.value },
-              }));
-            }}
-          />
-          <RequiredRule />
-          <Label text="Title" />
-        </Item>
-      </Form> */}
-            </DataTable>
+            </DataTable>}
           </div>
         </div>
       </div>
