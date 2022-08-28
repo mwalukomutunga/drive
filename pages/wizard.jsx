@@ -851,7 +851,7 @@ const UserForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="goatInsured"
                                     required=""
                                     // defaultValue={input?.goatInsured}
@@ -886,7 +886,7 @@ const UserForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="cattleInsured"
                                     required
                                     // defaultValue={input?.cattleInsured}
@@ -921,7 +921,7 @@ const UserForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="camelsInsured"
                                     required
                                     // defaultValue={input?.camelsInsured}
@@ -957,7 +957,7 @@ const UserForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="calfsInsured"
                                     required
                                     // defaultValue={input?.calfsInsured}
@@ -991,7 +991,7 @@ const UserForm = () => {
                               <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Insured"
+                                placeholder="Number to insure"
                                 name="number"
                                 required
                                 defaultValue={input?.number}
@@ -1025,7 +1025,7 @@ const UserForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="oxenInsured"
                                     required
                                     // defaultValue={input?.oxenInsured}
@@ -1060,7 +1060,7 @@ const UserForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="sheepInsured"
                                     required
                                     // defaultValue={input?.sheepInsured}
