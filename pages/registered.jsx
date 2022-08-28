@@ -4,6 +4,7 @@ import { Item, RequiredRule } from "devextreme-react/form";
 import { Form, Label } from "devextreme-react/data-grid";
 import TextBox from "devextreme-react/text-box";
 import requests from "../agent";
+import { useSelector } from "react-redux";
 import { LoadIndicator } from "devextreme-react/load-indicator";
 const page = "/Registrations/";
 
@@ -12,6 +13,7 @@ const columns = [
   "fullName",
   "idNo",
   "age",
+  "ndviUnit",
   "houseHoldSize",
   "gender",
   "cattle",
@@ -36,7 +38,12 @@ const Registered = () => {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState({});
   const [isloading, setLoading] = useState(false);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
+    if (user && user.isLogged && user.isLogged === true) {
+    } else {
+      router.push("/login");
+    }
     requests.get(page).then((response) => {
       setData(response);
     });

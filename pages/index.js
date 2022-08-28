@@ -1,7 +1,7 @@
 // import { useEffect,useState } from "react";
 // import ContentDetail from "../components/ContentDetail";
-// import { useRouter } from "next/router";
-// import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 // import requests from '../agent'
 
 // const Home = () => {
@@ -9,8 +9,6 @@
 //   const router = useRouter();
 //   const user = useSelector((state) => state.user);
 
-
-  
 //   useEffect(() => {
 //     if (user && user.isLogged && user.isLogged === true) {
 //     } else {
@@ -20,7 +18,7 @@
 //       useInputs(res);
 //     });
 //   }, [user,router]);
-  
+
 //   return <ContentDetail data={data} />;
 // };
 
@@ -44,8 +42,13 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [age, setAge] = useState([]);
   const [gender, setGender] = useState([]);
-
+  const router = useRouter();
+  const user = useSelector((state) => state.user);
   useEffect(() => {
+    if (user && user.isLogged && user.isLogged === true) {
+    } else {
+      router.push("/login");
+    }
     requests.get(page).then((response) => {
       setData(response);
     });
@@ -134,5 +137,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

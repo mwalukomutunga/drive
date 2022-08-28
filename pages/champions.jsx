@@ -16,6 +16,10 @@ const Chambion = () => {
   const [isloading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   useEffect(() => {
+    if (user && user.isLogged && user.isLogged === true) {
+    } else {
+      Router.push("/login");
+    }
     requests
       .get("/Registrations/phone/" + user?.user?.email)
       .then((response) => {
@@ -60,6 +64,7 @@ const Chambion = () => {
               <Column dataField="fullName" />
               <Column dataField="idNo" />
               <Column dataField="age" />
+              <Column dataField="ndviUnit" />
               <Column dataField="houseHoldSize" />
               <Column dataField="gender" />
               <Column dataField="cattle" />
