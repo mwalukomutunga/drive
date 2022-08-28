@@ -46,7 +46,7 @@ const Editable = ({
     <DataGrid
       dataSource={dataSource}
       columnsAutoWidth="true"
-      defaultColumns={columns}
+      // defaultColumns={columns}
       showBorders={true}
       showRowLines={true}
       rowAlternationEnabled={false}
@@ -63,10 +63,9 @@ const Editable = ({
         allowDeleting={false}
         useIcons={true}
       >
-        <Popup title={title} showTitle={true} width='auto' height='auto' />
-
-        {children}
+        <Popup title={title} showTitle={true} width='auto' height='auto' />      
       </Editing>
+      {children}
       <ColumnChooser enabled={true}  mode="select"/>
       <StateStoring enabled={true} type="localStorage" storageKey="klipstorageEditable" />
       <Grouping contextMenuEnabled={true} />

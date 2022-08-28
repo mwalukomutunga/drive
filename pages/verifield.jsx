@@ -5,26 +5,9 @@ import { Form, Label } from "devextreme-react/data-grid";
 import TextBox from "devextreme-react/text-box";
 import requests from "../agent";
 import Editable from "../components/EditableTable";
+import { Column,Button } from "devextreme-react/data-grid";
 const page = "/Pastoralist/unverified";
 
-const columns = [
-    "surname",
-    "otherNames",
-    "idNo",
-    "cattle",
-    "goats",
-    "sheep",
-    "camels",
-    "bankName",
-    "branch",
-    "bankACNo",
-    "mobilePhoneNo",
-    "county",
-    "subCounty",
-    "ward",
-    "village",
-    "nokSurname",
-  ];
 
 const Unverified = () => {
   const [data, setData] = useState([]);
@@ -52,29 +35,32 @@ const Unverified = () => {
           <div className="card-body">
             <h4 className="header-title mb-3"> Unverified Pastoralist </h4>
             <Editable
-              columns={columns}
+              // columns={columns}
               dataSource={data}
-              title="SYS Titles"
+              title="Unverified Pastoralist"
               handlesave={handleSave}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
               width={500}
               height={350}
             >
-              {/* <Form colCount={1}>
-        <Item>
-          <TextBox
-            onValueChanged={(e) => {
-              setInputs((prevState) => ({
-                inputs: { ...prevState.inputs, title: e.value },
-              }));
-            }}
-          />
-          <RequiredRule />
-          <Label text="Title" />
-        </Item>
-      </Form> */}
             </Editable>
+            <Column dataField="surname"/>
+            <Column dataField="otherNames"/>
+            <Column dataField="idNo"/>
+            <Column dataField="cattle"/>
+            <Column dataField="goats"/>
+            <Column dataField="sheep"/>
+            <Column dataField="camels"/>
+            <Column dataField="bankName"/>
+            <Column dataField="branch"/>
+            <Column dataField="bankACNo"/>
+            <Column dataField="mobilePhoneNo"/>
+            <Column dataField="county"/>
+            <Column dataField="subCounty"/>
+            <Column dataField="ward"/>
+            <Column dataField="village"/>
+            <Column dataField="nokSurname"/>
           </div>
         </div>
       </div>
@@ -82,4 +68,22 @@ const Unverified = () => {
   );
 };
 
+const columns = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
 export default Unverified;

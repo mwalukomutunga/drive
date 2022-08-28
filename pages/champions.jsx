@@ -2,35 +2,12 @@ import { useEffect, useState } from "react";
 import DataTable from "../components/Table";
 import { useSelector } from "react-redux";
 import requests from "../agent";
+import React from "react";
 import Link from "next/link";
+import { Column,Button } from "devextreme-react/data-grid";
 import Editable from "../components/EditableTable";
+import Router from "next/router";
 // const page = "/Registrations/phone/254710623337";
-
-
-const columns = [
-  "user",
-  "fullName",
-  "idNo",
-  "age",
-  "houseHoldSize",
-  "gender",
-  "cattle",
-  "goats",
-  "sheep",
-  "camels",
-  "bankName",
-  "branch",
-  "bankACNo",
-  "mobilePhoneNo",
-  "county",
-  "subCounty",
-  "ward",
-  "village",
-  "nokFullname",
-  "isKlip",
-  "hasId",
-  "hasPassPort",
-];
 
 const Chambion = () => {
   const [data, setData] = useState([]);
@@ -44,11 +21,10 @@ const Chambion = () => {
       });
   }, []);
 
-  const handleUpdate =(e) =>{
-    console.log(e)
-   e.cancel;
-   
-  }
+
+  const onAddButtonClick = React.useCallback((e) => {
+    Router.push('editreg/'+e?.row?.data?.idNo);
+  }, []);
 
   return (
     <div className="row">
@@ -64,28 +40,49 @@ const Chambion = () => {
               </Link>
             </div>
             <Editable
-              columns={columns}
               dataSource={data}
               title="Chambion Registered"
               // handlesave={handleSave}
               // handleDelete={handleDelete}
-               handleUpdate={handleUpdate}
+              // handleUpdate={handleUpdate}
               width={500}
               height={350}
             >
-              {/* <Form colCount={1}>
-        <Item>
-          <TextBox
-            onValueChanged={(e) => {
-              setInputs((prevState) => ({
-                inputs: { ...prevState.inputs, title: e.value },
-              }));
-            }}
-          />
-          <RequiredRule />
-          <Label text="Title" />
-        </Item>
-      </Form> */}
+              <Column dataField="username" groupIndex={0} />
+              <Column dataField="fullName" />
+              <Column dataField="idNo" />
+              <Column dataField="age" />
+              <Column dataField="houseHoldSize" />
+              <Column dataField="gender" />
+              <Column dataField="cattle" />
+              <Column dataField="goats" />
+              <Column dataField="sheep" />
+              <Column dataField="camels" />
+              <Column dataField="bankName" />
+              <Column dataField="branch" />
+              <Column dataField="bankACNo" />
+              <Column dataField="mobilePhoneNo" />
+              <Column dataField="county" />
+              <Column dataField="subCounty" />
+              <Column dataField="ward" />
+              <Column dataField="village" />
+              <Column dataField="nokFullname" />
+              <Column dataField="isKlip" />
+              <Column dataField="hasId" />
+              <Column dataField="hasPassPort" />
+              <Column type="buttons">
+                <Button
+                  icon="edit"
+                  onClick={onAddButtonClick}
+                  visible={true}
+                />
+                {/* <Button name="delete" />
+                <Button name="save" />
+                <Button name="cancel" /> */}
+              </Column>
+              {/* <Column dataField="user" />
+            <Column dataField="user" />
+            <Column dataField="user" /> */}
             </Editable>
           </div>
         </div>

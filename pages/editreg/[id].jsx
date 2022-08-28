@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useCallback, useEffect, useState } from "react";
-import requests from "../agent";
+import requests from "../../agent";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
-import MyDropzone from "../components/DropZone";
+import MyDropzone from "../../components/DropZone";
 
-const UserForm = () => {
+const EditForm = () => {
   const [input, setInputs] = useState({
     fullName: "",
     idNo: "",
@@ -59,6 +59,7 @@ const UserForm = () => {
   const [passportFile, setPassportFile] = useState({});
   const router = useRouter();
   const user = useSelector((state) => state.user);
+  const { id } = router.query
 
   useEffect(() => {
     if (user && user.isLogged && user.isLogged === true) {
@@ -66,6 +67,19 @@ const UserForm = () => {
       router.push("/login");
     }
     setInputs((inputs) => ({ ...inputs, user: user?.user?.email }));
+    requests.get("Registrations/" + id).then((res) => {     
+      setInputs({
+        ...res,
+        user: user?.user?.email,
+        username: user?.user?.name,
+        idNo: id,
+        nokPaymentMethod: "M-pesa",
+        gender: "Male",
+        nokGender: "Male",
+        latitude: latitude?.latitude,
+        longitude: longitude?.longitude
+      });
+    });
     requests.get("Regions/regions").then((res) => {
       setRegions(res);
     });
@@ -82,19 +96,7 @@ const UserForm = () => {
   }, [user?.user?.email, user]);
 
   const handleIdChange = (e) => {
-    requests.get("Pastoralist/idno/" + e.target.value).then((res) => {     
-      setInputs({
-        ...res,
-        user: user?.user?.email,
-        username: user?.user?.name,
-        idNo: e.target.value,
-        nokPaymentMethod: "M-pesa",
-        gender: "Male",
-        nokGender: "Male",
-        latitude: latitude?.latitude,
-        longitude: longitude?.longitude
-      });
-    });
+   
   };
 
   const handleInputChange = (event) => {
@@ -1280,4 +1282,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default EditForm;
