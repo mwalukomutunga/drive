@@ -102,13 +102,11 @@ const UserForm = () => {
         latitude: latitude?.latitude,
         longitude: longitude?.longitude,
         group:true,
-        group:'none',
+        groupName:'none',
         groupContact:'N/A',
         groupContactPhone:'',
         preferredGroup:'',
         groupsAround:'',
-        groupName:''
-
       });
     });
   };
