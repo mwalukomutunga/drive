@@ -70,7 +70,7 @@ const Home = () => {
               <div className="col-xl-6">
                 <Chart
                   height="auto"
-                  title="Registered by Village"
+                  title="Registered by sub county"
                   dataSource={data}
                   id="chart"
                 >

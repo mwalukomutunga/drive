@@ -350,25 +350,23 @@ const Layout = ({ children }) => {
                 <li className="menu-title">Navigation</li>
                 <li>
                   <Link href="#sidebarDashboards">
-                  <a
-                    
-                    data-bs-toggle="collapse"
-                    aria-expanded="false"
-                    aria-controls="sidebarDashboards"
-                    className="waves-effect"
-                  >
-                    <i className="ri-dashboard-line"></i>
-                    <span className="badge bg-success rounded-pill float-end">
-                     
-                    </span>
-                    <span> Dashboards </span>
-                  </a>                  
+                    <a
+                      data-bs-toggle="collapse"
+                      aria-expanded="false"
+                      aria-controls="sidebarDashboards"
+                      className="waves-effect"
+                    >
+                      <i className="ri-dashboard-line"></i>
+                      <span className="badge bg-success rounded-pill float-end"></span>
+                      <span> Dashboards </span>
+                    </a>
                   </Link>
                   <div className="collapse" id="sidebarDashboards">
                     <ul className="nav-second-level">
                       <li>
                         <Link href="/dashboard">
-                        <a >Admin</a></Link>
+                          <a>Admin</a>
+                        </Link>
                       </li>
                       {/* <li>
                         <Link href="/">
@@ -378,8 +376,6 @@ const Layout = ({ children }) => {
                         <Link href="/">
                         <a >Sales</a></Link>
                       </li> */}
-                      
-                    
                     </ul>
                   </div>
                 </li>
@@ -395,37 +391,41 @@ const Layout = ({ children }) => {
                   </Link>
                 </li>
                 <li>
-              <Link href="/champions">
-                <a>
-                <i className="fas fa-address-card"></i>
-                  <span>My Registrations</span>
-                </a>
-              </Link>
-            </li>           
-            <li>
-              <Link href="/registered">
-                <a>
-                  <i className="fas fa-list-ul"></i>
-                  <span>Aggregated </span>
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/verifield">
-                <a>
-                  <i className=" fas fa-spinner"></i>
-                  <span>Unverifield </span>
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/pastoralists">
-                <a>
-                  <i className="far fa-list-alt"></i>
-                  <span>Klip  Pastoralists</span>
-                </a>
-              </Link>
-            </li>
+                  <Link href="/champions">
+                    <a>
+                      <i className="fas fa-address-card"></i>
+                      <span>My Registrations</span>
+                    </a>
+                  </Link>
+                </li>
+                {user?.superUser && (
+                  <>
+                    <li>
+                      <Link href="/registered">
+                        <a>
+                          <i className="fas fa-list-ul"></i>
+                          <span>Aggregated </span>
+                        </a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/verifield">
+                        <a>
+                          <i className=" fas fa-spinner"></i>
+                          <span>Unverifield </span>
+                        </a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/pastoralists">
+                        <a>
+                          <i className="far fa-list-alt"></i>
+                          <span>Klip Pastoralists</span>
+                        </a>
+                      </Link>
+                    </li>
+                  </>
+                )}
                 <li>
                   <Link href="bio">
                     <a>
@@ -434,7 +434,6 @@ const Layout = ({ children }) => {
                     </a>
                   </Link>
                 </li>
-                
               </ul>
             </div>
 
