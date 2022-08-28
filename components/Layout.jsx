@@ -398,7 +398,7 @@ const Layout = ({ children }) => {
                     </a>
                   </Link>
                 </li>
-                {user?.superUser && (
+                {user?.user?.superUser && (
                   <>
                     <li>
                       <Link href="/registered">
