@@ -49,7 +49,15 @@ const UserForm = () => {
     user: "",
   });
   const [regions, setRegions] = useState([]);
-  const [ndviUnits, setNdviUnits] = useState([{ name: "Bangahiri" },{ name: "Chewani" },{ name: "Galole West" },{ name: "Garseni North" },{ name: "Kipao" },{ name: "Masache" },{ name: "WAMBA WEST" }]);
+  const [ndviUnits, setNdviUnits] = useState([
+    { name: "Bangahiri" },
+    { name: "Chewani" },
+    { name: "Galole West" },
+    { name: "Garseni North" },
+    { name: "Kipao" },
+    { name: "Masache" },
+    { name: "WAMBA WEST" },
+  ]);
   const [counties, setCounties] = useState([]);
   const [subcounties, setSubCounties] = useState([]);
   const [latitude, setLatitude] = useState(0);
@@ -82,7 +90,7 @@ const UserForm = () => {
   }, [user?.user?.email, user]);
 
   const handleIdChange = (e) => {
-    requests.get("Pastoralist/idno/" + e.target.value).then((res) => {     
+    requests.get("Pastoralist/idno/" + e.target.value).then((res) => {
       setInputs({
         ...res,
         user: user?.user?.email,
@@ -92,7 +100,15 @@ const UserForm = () => {
         gender: "Male",
         nokGender: "Male",
         latitude: latitude?.latitude,
-        longitude: longitude?.longitude
+        longitude: longitude?.longitude,
+        group:true,
+        group:'none',
+        groupContact:'N/A',
+        groupContactPhone:'',
+        preferredGroup:'',
+        groupsAround:'',
+        groupName:''
+
       });
     });
   };
@@ -201,11 +217,11 @@ const UserForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-   //  handleUpLoad();
+    //  handleUpLoad();
     // console.log(input);
     requests.post("/Registrations/", input).then((res) => {
       // console.log(res);
-      router.push('/champions')
+      router.push("/champions");
     });
   };
 
@@ -346,7 +362,7 @@ const UserForm = () => {
                   <div className="tab-content b-0 mb-0">
                     <div className="tab-pane" id="basictab1">
                       <div className="row">
-                        <div className="col-9">
+                        <div className="col-sm">
                           <div className="mb-2 row">
                             <label className="col-md-2 col-form-label">
                               ID Number
@@ -447,6 +463,108 @@ const UserForm = () => {
                               </select>
                             </div>
                           </div>
+                        </div>
+                        <div className="col-sm">                          
+                          <div className="mb-2 row">
+                            <div class="form-check">
+                              <input
+                              name ="group"
+                                className="form-check-input"
+                                type="checkbox" 
+                                checked={input?.group}
+                                onChange={handleInputChange}                              
+                              />
+                              <label
+                                className="form-check-label"
+                                for="flexCheckDefault"
+                              >
+                                Do you belong to any pastoralist or savings group?
+                              </label>
+                            </div>
+                          </div>
+                         {input?.group && <><div className="mb-2 row">
+                            <label className="col-md-4 col-form-label">
+                              Group name
+                            </label>
+                            <div className="col-md-8">
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Group name"
+                                required
+                                name="groupName"
+                                defaultValue={input?.groupName}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label className="col-md-4 col-form-label">
+                              Group contact person
+                            </label>
+                            <div className="col-md-8">
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Group contact person"
+                                required
+                                name="groupContact"
+                                defaultValue={input?.groupContact}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label className="col-md-4 col-form-label">
+                              Group contact phone
+                            </label>
+                            <div className="col-md-8">
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Group contact phone"
+                                required
+                                name="groupContactPhone"
+                                defaultValue={input?.groupContactPhone}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div></>}
+                          {!input?.group && <>
+                          <div className="mb-2 row">
+                            <label className="col-md-4 col-form-label">
+                              Groups around you<em>(comma separate)</em>
+                            </label>
+                            <div className="col-md-8">
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Groups around you"
+                                required
+                                name="groupsAround"
+                                defaultValue={input?.groupsAround}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label className="col-md-4 col-form-label">
+                              Preferred group
+                            </label>
+                            <div className="col-md-8">
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Preferred group"
+                                required
+                                name="preferredGroup"
+                                defaultValue={input?.preferredGroup}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                            
+                          </div>
+                          </>}
                         </div>
                       </div>
 
@@ -647,7 +765,7 @@ const UserForm = () => {
                           </div>
                           <div className="mb-2 row">
                             <label className="col-md-2 col-form-label">
-                            NDVI unit
+                              NDVI unit
                             </label>
                             <div className="col-md-10">
                               <select

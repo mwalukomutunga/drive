@@ -7,7 +7,7 @@ import requests from "../agent";
 import Editable from "../components/EditableTable";
 import { Column, Button } from "devextreme-react/data-grid";
 
-const page = "/Pastoralist/unverified";
+const page = "/Pastoralist/";
 
 const Unverified = () => {
   const [data, setData] = useState([]);
