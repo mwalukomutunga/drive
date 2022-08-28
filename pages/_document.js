@@ -61,15 +61,18 @@ class MyDocument extends Document {
           <Main />
 
           <NextScript />
-          <div className="rightbar-overlay"></div>
-          <script async src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-          <script async src="/assets/js/vendor.min.js"></script>
+          {/* <div className="rightbar-overlay"></div> */}
           <script
-            async
+            defer
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
+          ></script>
+          <script defer src="/assets/js/vendor.min.js"></script>
+          <script defer src="/assets/js/app.min.js"></script>
+          <script
+            defer
             src="/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"
           ></script>
-          <script async src="/assets/js/pages/form-wizard.init.js"></script>
-          <script async src="/assets/js/app.min.js"></script>
+          <script defer src="/assets/js/pages/form-wizard.init.js"></script>
         </body>
       </Html>
     );

@@ -279,8 +279,8 @@ const UserForm = () => {
   return (
     <>
       {/* <Script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></Script> */}
-      <Script src="/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></Script>
-      <Script src="/assets/js/pages/form-wizard.init.js"></Script>
+      {/* <Script src="/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></Script>
+      <Script src="/assets/js/pages/form-wizard.init.js"></Script> */}
       <div className="row">
         <div className="col-xl-12">
           <div className="card">
@@ -464,7 +464,7 @@ const UserForm = () => {
                         </div>
                         <div className="col-sm">                          
                           <div className="mb-2 row">
-                            <div class="form-check">
+                            <div className="form-check">
                               <input
                               name ="group"
                                 className="form-check-input"
@@ -474,7 +474,6 @@ const UserForm = () => {
                               />
                               <label
                                 className="form-check-label"
-                                for="flexCheckDefault"
                               >
                                 Do you belong to any pastoralist or savings group?
                               </label>
@@ -719,7 +718,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.region}
+                                // value={input?.region}
                                 onChange={handleRegionChange}
                                 className="form-control"
                               >
@@ -735,7 +734,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.county}
+                                // value={input?.county}
                                 onChange={handleCountyChange}
                                 className="form-control"
                               >
@@ -751,7 +750,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.subCounty}
+                                // value={input?.subCounty}
                                 onChange={handleSUbCountyChange}
                                 className="form-control"
                               >
@@ -767,7 +766,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.ndviUnit}
+                                // value={input?.ndviUnit}
                                 onChange={handleIbliChange}
                                 className="form-control"
                               >
@@ -783,7 +782,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.ward}
+                                // value={input?.ward}
                                 onChange={handleWardChange}
                                 className="form-control"
                               >
@@ -1251,7 +1250,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.nokRegion}
+                                // value={input?.nokRegion}
                                 onChange={handleNOKRegionChange}
                                 className="form-control"
                               >
@@ -1267,7 +1266,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.nokCounty}
+                                // value={input?.nokCounty}
                                 onChange={handleNOKCountyChange}
                                 className="form-control"
                               >
@@ -1283,7 +1282,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.nokSubCounty}
+                                // value={input?.nokSubCounty}
                                 onChange={handleNOKSUbCountyChange}
                                 className="form-control"
                               >
@@ -1299,7 +1298,7 @@ const UserForm = () => {
                             </label>
                             <div className="col-md-10">
                               <select
-                                value={input?.nokWard}
+                                // value={input?.nokWard}
                                 onChange={handleNOKWardChange}
                                 className="form-control"
                               >

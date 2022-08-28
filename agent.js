@@ -61,11 +61,11 @@ axios.interceptors.response.use(
             "The resource you are accessing is not available at the moment"
           );
           break;
-        case 500:
-        case 501:
-        case 503:
-          notify("Server failed");
-          break;
+        // case 500:
+        // case 501:
+        // case 503:
+        //   notify("Server failed");
+        //   break;
         default:
           notify("Failed to load resources");
       }

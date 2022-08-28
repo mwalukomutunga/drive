@@ -16,6 +16,41 @@ const Layout = ({ children }) => {
   };
   return (
     <>
+    <Head>
+
+    <Head>
+          <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+          <link
+            href="/assets/css/default/bootstrap.min.css"
+            rel="stylesheet"
+            type="text/css"
+            id="bs-default-stylesheet"
+          />
+          <link
+            href="/assets/css/default/app.min.css"
+            rel="stylesheet"
+            type="text/css"
+            id="app-default-stylesheet"
+          />
+          <link
+            href="/assets/css/default/bootstrap-dark.min.css"
+            rel="stylesheet"
+            type="text/css"
+            id="bs-dark-stylesheet"
+          />
+          <link
+            href="/assets/css/default/app-dark.min.css"
+            rel="stylesheet"
+            type="text/css"
+            id="app-dark-stylesheet"
+          />
+          <link
+            href="/assets/css/icons.min.css"
+            rel="stylesheet"
+            type="text/css"
+          />
+        </Head>
+    </Head>
       <div id="wrapper">
         <div className="navbar-custom">
           <div className="container-fluid">
@@ -24,8 +59,7 @@ const Layout = ({ children }) => {
                 <Link href="">
                   <a
                     className="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light"
-                    data-bs-toggle="dropdown"
-                    href="pages-starter.html#"
+                    data-bs-toggle="dropdown"                   
                     role="button"
                     aria-haspopup="false"
                     aria-expanded="false"
@@ -120,23 +154,7 @@ const Layout = ({ children }) => {
                 <button className="button-menu-mobile waves-effect waves-light">
                   <i className="fe-menu"></i>
                 </button>
-              </li>
-
-              <li>
-                <Link href="">
-                  <a
-                    className="navbar-toggle nav-link"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#topnav-menu-content"
-                  >
-                    <div className="lines">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </a>
-                </Link>
-              </li>
+              </li>             
             </ul>
             <div className="clearfix"></div>
           </div>

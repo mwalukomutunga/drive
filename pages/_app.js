@@ -1,3 +1,5 @@
+import "devextreme/dist/css/dx.light.compact.css";
+import AuthLayout from "../components/AuthLayout";
 import Layout from "../components/Layout";
 import store from "../context/store";
 import { Provider } from "react-redux";
@@ -8,9 +10,8 @@ import { ToastContainer } from "react-toastify";
 import Script from "next/script";
 import NProgress from "nprogress"; //nprogress module
 import "nprogress/nprogress.css"; //styles of nprogress
-import AuthLayout from "../components/AuthLayout";
+
 // import 'devextreme/dist/css/dx.light.css';
-import 'devextreme/dist/css/dx.light.compact.css';
 
 // import 'devextreme/dist/css/dx.carmine.compact.css';
 //  import 'devextreme/dist/css/dx.material.orange.light.compact.css';
@@ -48,26 +49,26 @@ function MyApp({ Component, pageProps, ...appProps }) {
           </AuthLayout>
         </Provider>
       );
+    } else {
+      return (
+        <Provider store={store}>
+          <Layout {...appProps}>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      );
     }
-
-    return (
-      <Provider store={store}>
-        <Layout {...appProps}>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-    );
   };
 
   return getLayout();
