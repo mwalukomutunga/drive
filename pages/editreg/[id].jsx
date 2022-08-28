@@ -81,6 +81,13 @@ const EditForm = () => {
         user: user?.user?.email,
         username: user?.user?.name,
         idNo: id,
+        cattle: 0,
+        oxen: 0,
+        goats: 0,
+        sheep: 0,
+        camels: 0,
+        heifer: 0,
+        calfs: 0,
         nokPaymentMethod: "M-pesa",
         gender: "Male",
         nokGender: "Male",
@@ -857,7 +864,7 @@ const EditForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="goatInsured"
                                     required=""
                                     // defaultValue={input?.goatInsured}
@@ -892,7 +899,7 @@ const EditForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="cattleInsured"
                                     required
                                     // defaultValue={input?.cattleInsured}
@@ -927,7 +934,7 @@ const EditForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="camelsInsured"
                                     required
                                     // defaultValue={input?.camelsInsured}
@@ -963,7 +970,7 @@ const EditForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="calfsInsured"
                                     required
                                     // defaultValue={input?.calfsInsured}
@@ -997,7 +1004,7 @@ const EditForm = () => {
                               <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Insured"
+                                placeholder="Number to insure"
                                 name="number"
                                 required
                                 defaultValue={input?.number}
@@ -1031,7 +1038,7 @@ const EditForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="oxenInsured"
                                     required
                                     // defaultValue={input?.oxenInsured}
@@ -1066,7 +1073,7 @@ const EditForm = () => {
                                   <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Insured"
+                                    placeholder="Number to insure"
                                     name="sheepInsured"
                                     required
                                     // defaultValue={input?.sheepInsured}
