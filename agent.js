@@ -17,7 +17,7 @@ const notify = (msg) =>
 axios.defaults.baseURL = isProd
   ? "https://klip.acreafrica.com/api/"
   : "http://localhost:7005/api/";
-
+// axios.defaults.baseURL ='https://klip.acreafrica.com/api/';
 axios.interceptors.request.use((config) => {
   const state = store.getState();
   const token = state.user?.user?.token;
@@ -61,13 +61,14 @@ axios.interceptors.response.use(
             "The resource you are accessing is not available at the moment"
           );
           break;
-        // case 500:
-        // case 501:
-        // case 503:
-        //   notify("Server failed");
-        //   break;
-        default:
+        case 500:
+        case 501:
+        case 503:
+          notify("Server failed");
+          break;
+        default:         
           notify("Failed to load resources");
+          break;
       }
     }
   }

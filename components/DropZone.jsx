@@ -6,18 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 function MyDropzone({text, name, setInputs }) {
   const [isloading,setLoading] = useState(false)
   const user = useSelector((state) => state.user);
-  const onDrop = useCallback((acceptedFiles) => { 
-    
-    const formData = new FormData();
-    formData.append("files", acceptedFiles[0]);
-    setLoading(true)
-    requests.post("/uploads/" + user?.user?.email, formData).then((res) => {
-      setInputs((inputs) => ({
-        ...inputs,
-        [name]: res,
-      }));      
-    });
-    setLoading(false)
+  const onDrop = useCallback(async (acceptedFiles) => {   
+ 
+    setInputs((inputs) => ({
+          ...inputs,
+          [name]: acceptedFiles[0],
+        }));     
   }, []);
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop,

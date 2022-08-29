@@ -6,6 +6,7 @@ import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
 import MyDropzone from "../components/DropZone";
+import { FieldChooser } from "devextreme-react/pivot-grid";
 
 const UserForm = () => {
   const [input, setInputs] = useState({
@@ -49,6 +50,7 @@ const UserForm = () => {
     user: "",
   });
   const [regions, setRegions] = useState([]);
+  const [files, setFiles] = useState([]);
   const [ndviUnits, setNdviUnits] = useState([
     { name: "Bangahiri" },
     { name: "Chewani" },
@@ -215,11 +217,14 @@ const UserForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    //  handleUpLoad();
-    // console.log(input);
-    requests.post("/Registrations/", input).then((res) => {
-      // console.log(res);
-      router.push("/champions");
+    const formData = new FormData();
+
+    formData.append("files", files?.idpath);
+    formData.append("files",files?.passportPath);
+     requests.post("/Registrations/", input).then((res) => {
+      requests.post('uploads/'+input.idNo,formData).then(path =>{
+        router.push('champions');
+      });
     });
   };
 
@@ -236,27 +241,27 @@ const UserForm = () => {
   //     },
   //   });
 
-  const handleUpLoad = () => {
-    console.log(idFiles);
-    console.log(passportFile);
-    const formData = new FormData();
-    formData.append("files", idFiles?.file);
-    requests.post("/uploads/" + user?.user?.email, formData).then((res) => {
-      setInputs((inputs) => ({
-        ...inputs,
-        idpath: res,
-      }));
-    });
+  // const handleUpLoad = () => {
+  //   console.log(idFiles);
+  //   console.log(passportFile);
+  //   const formData = new FormData();
+  //   formData.append("files", idFiles?.file);
+  //   requests.post("/uploads/" + user?.user?.email, formData).then((res) => {
+  //     setInputs((inputs) => ({
+  //       ...inputs,
+  //       idpath: res,
+  //     }));
+  //   });
 
-    const formData1 = new FormData();
-    formData1.append("files", passportFile?.file);
-    requests.post("/uploads/" + user?.user?.email, formData1).then((res) => {
-      setInputs((inputs) => ({
-        ...inputs,
-        passportPath: res,
-      }));
-    });
-  };
+  //   const formData1 = new FormData();
+  //   formData1.append("files", passportFile?.file);
+  //   requests.post("/uploads/" + user?.user?.email, formData1).then((res) => {
+  //     setInputs((inputs) => ({
+  //       ...inputs,
+  //       passportPath: res,
+  //     }));
+  //   });
+  // };
 
   // const acceptedFileItems = acceptedFiles.map((file) => (
   //   <li key={file.path}>
@@ -1346,12 +1351,12 @@ const UserForm = () => {
                         <MyDropzone
                           text="ID card"
                           name="idpath"
-                          setInputs={setIdFiles}
+                          setInputs={setFiles}
                         />
                         <MyDropzone
                           text="next of kin ID"
                           name="passportPath"
-                          setInputs={setPassportFile}
+                          setInputs={setFiles}
                         />
                         {/* <section> */}
 
