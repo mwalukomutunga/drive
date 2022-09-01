@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import requests from "../agent";
 import React from "react";
 import Link from "next/link";
-import { Column,Button } from "devextreme-react/data-grid";
+import { Column,Button,Summary,TotalItem  } from "devextreme-react/data-grid";
 import { LoadIndicator } from "devextreme-react/load-indicator";
 import Editable from "../components/EditableTable";
 import Router from "next/router";
@@ -62,7 +62,7 @@ const Chambion = () => {
               width={500}
               height={350}
             >
-              <Column dataField="username" groupIndex={0} caption=" Field officer" />
+              <Column dataField="username"  caption=" Field officer" />
               <Column dataField="fullName" />
               <Column dataField="idNo" />
               <Column dataField="age" />
@@ -91,7 +91,24 @@ const Chambion = () => {
                   onClick={onAddButtonClick}
                   visible={true}
                 />              
-              </Column>           
+              </Column>  
+              <Summary>
+            <TotalItem
+              column="idNo"
+              summaryType="count" />           
+            <TotalItem
+              column="cattle"
+              summaryType="sum" />
+               <TotalItem
+              column="goats"
+              summaryType="sum" />
+              <TotalItem
+              column="sheep"
+              summaryType="sum" />
+               <TotalItem
+              column="camels"
+              summaryType="sum" />
+          </Summary>         
             </Editable>}
           </div>
         </div>

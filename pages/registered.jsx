@@ -5,36 +5,9 @@ import { Form, Label } from "devextreme-react/data-grid";
 import TextBox from "devextreme-react/text-box";
 import requests from "../agent";
 import { useSelector } from "react-redux";
-import { Column,Button } from "devextreme-react/data-grid";
+import { Column,Button,Summary,TotalItem } from "devextreme-react/data-grid";
 import { LoadIndicator } from "devextreme-react/load-indicator";
 const page = "/Registrations/";
-
-// const columns = [
-//   "user",
-//   "fullName",
-//   "idNo",
-//   "age",
-//   "ndviUnit",
-//   "houseHoldSize",
-//   "gender",
-//   "cattle",
-//   "goats",
-//   "sheep",
-//   "camels",
-//   "bankName",
-//   "branch",
-//   "bankACNo",
-//   "mobilePhoneNo",
-//   "county",
-//   "subCounty",
-//   "ward",
-//   "village",
-//   "nokFullname",
-//   "isKlip",
-//   "hasId",
-//   "hasPassPort",
-// ];
-
 const Registered = () => {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState({});
@@ -84,7 +57,7 @@ const Registered = () => {
               width={500}
               height={350}
             >
-              <Column dataField="username" groupIndex={0} caption=" Field officer" />
+              <Column dataField="username" caption=" Field officer" />
               <Column dataField="fullName" />
               <Column dataField="idNo" />
               <Column dataField="age" />
@@ -107,13 +80,23 @@ const Registered = () => {
               <Column dataField="isKlip" />
               <Column dataField="hasId" />
               <Column dataField="hasPassPort" />
-              {/* <Column type="buttons">
-                <Button
-                  icon="edit"
-                  onClick={onAddButtonClick}
-                  visible={true}
-                />              
-              </Column>            */}
+              <Summary>
+            <TotalItem
+              column="idNo"
+              summaryType="count" />           
+            <TotalItem
+              column="cattle"
+              summaryType="sum" />
+               <TotalItem
+              column="goats"
+              summaryType="sum" />
+              <TotalItem
+              column="sheep"
+              summaryType="sum" />
+               <TotalItem
+              column="camels"
+              summaryType="sum" />
+          </Summary>
             </Editable>}
           </div>
         </div>
