@@ -290,7 +290,7 @@ const UserForm = () => {
         <div className="col-xl-12">
           <div className="card">
             <div className="card-body">
-              <h4 className="header-title mb-3"> Pastoralist Registration</h4>
+              <h4 className="header-title mb-3"> Pastoralists Registration</h4>
               <form onSubmit={(e) => handleSubmit(e)} noValidate>
                 <div id="basicwizard">
                   <ul className="nav nav-pills nav-justified form-wizard-header mb-4">

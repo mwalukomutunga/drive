@@ -68,7 +68,7 @@ const Registered = () => {
       <div className="col-xl-12">
         <div className="card">
           <div className="card-body">
-            <h4 className="header-title mb-3"> Registered Pastoralist </h4>
+            <h4 className="header-title mb-3"> Registered Pastoralists </h4>
             {isloading && (
               <div className="indicators text-center">
                 <LoadIndicator id="large-indicator" height={60} width={60} />

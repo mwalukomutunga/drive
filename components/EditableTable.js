@@ -58,7 +58,7 @@ const Editable = ({
     >
       <Editing
         mode="popup"
-        allowUpdating={true}
+        allowUpdating={false}
         allowAdding={false}
         allowDeleting={false}
         useIcons={true}

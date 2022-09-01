@@ -465,7 +465,7 @@ const Layout = ({ children }) => {
               <div className="row">
                 <div className="col-12">
                   <div className="page-title-box">
-                    <h4 className="page-title">Pastoralist</h4>
+                    <h4 className="page-title">Pastoralists</h4>
                     <div className="page-title-right">
                       <ol className="breadcrumb m-0">
                         <li className="breadcrumb-item">
@@ -478,7 +478,7 @@ const Layout = ({ children }) => {
                             <a>KLIP</a>
                           </Link>
                         </li>
-                        <li className="breadcrumb-item active">Pastoralist</li>
+                        <li className="breadcrumb-item active">Pastoralists</li>
                       </ol>
                     </div>
                   </div>
