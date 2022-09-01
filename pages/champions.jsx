@@ -20,10 +20,12 @@ const Chambion = () => {
     } else {
       Router.push("/login");
     }
+    setLoading(true);
     requests
       .get("/Registrations/phone/" + user?.user?.email)
       .then((response) => {
         setData(response);
+        setLoading(false)
       });
   }, []);
 

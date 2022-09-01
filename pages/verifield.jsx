@@ -17,8 +17,9 @@ const Unverified = () => {
     setLoading(true);
     requests.get(page).then((response) => {
       setData(response);
+      setLoading(false);
     });
-    setLoading(false);
+
   }, []);
 
   const handleSave = (e) => {

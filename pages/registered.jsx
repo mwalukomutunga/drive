@@ -40,15 +40,17 @@ const Registered = () => {
   const [isloading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   useEffect(() => {
-    setLoading(true)
+   
     if (user && user.isLogged && user.isLogged === true) {
     } else {
       router.push("/login");
     }
+    setLoading(true)
     requests.get(page).then((response) => {
       setData(response);
+      setLoading(false)
     });
-    setLoading(false)
+ 
   }, []);
 
   const handleSave = (e) => {
