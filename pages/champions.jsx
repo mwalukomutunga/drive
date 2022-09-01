@@ -60,7 +60,7 @@ const Chambion = () => {
               width={500}
               height={350}
             >
-              <Column dataField="username" groupIndex={0} />
+              <Column dataField="username" groupIndex={0} caption=" Field officer" />
               <Column dataField="fullName" />
               <Column dataField="idNo" />
               <Column dataField="age" />

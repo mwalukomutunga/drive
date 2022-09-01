@@ -40,6 +40,7 @@ const Registered = () => {
   const [isloading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   useEffect(() => {
+    setLoading(true)
     if (user && user.isLogged && user.isLogged === true) {
     } else {
       router.push("/login");
@@ -47,6 +48,7 @@ const Registered = () => {
     requests.get(page).then((response) => {
       setData(response);
     });
+    setLoading(false)
   }, []);
 
   const handleSave = (e) => {
