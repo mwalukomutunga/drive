@@ -48,7 +48,7 @@ const Chambion = () => {
               </Link>
             </div>
             {isloading && (
-              <div className="indicators">
+              <div className="indicators text-center">
                 <LoadIndicator id="large-indicator" height={60} width={60} />
               </div>
             )}

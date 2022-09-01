@@ -70,7 +70,7 @@ const Registered = () => {
           <div className="card-body">
             <h4 className="header-title mb-3"> Registered Pastoralist </h4>
             {isloading && (
-              <div className="indicators">
+              <div className="indicators text-center">
                 <LoadIndicator id="large-indicator" height={60} width={60} />
               </div>
             )}
