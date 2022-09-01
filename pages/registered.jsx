@@ -1,38 +1,39 @@
 import { useEffect, useState } from "react";
-import DataTable from "../components/Table";
+import Editable from "../components/EditableTable";
 import { Item, RequiredRule } from "devextreme-react/form";
 import { Form, Label } from "devextreme-react/data-grid";
 import TextBox from "devextreme-react/text-box";
 import requests from "../agent";
 import { useSelector } from "react-redux";
+import { Column,Button } from "devextreme-react/data-grid";
 import { LoadIndicator } from "devextreme-react/load-indicator";
 const page = "/Registrations/";
 
-const columns = [
-  "user",
-  "fullName",
-  "idNo",
-  "age",
-  "ndviUnit",
-  "houseHoldSize",
-  "gender",
-  "cattle",
-  "goats",
-  "sheep",
-  "camels",
-  "bankName",
-  "branch",
-  "bankACNo",
-  "mobilePhoneNo",
-  "county",
-  "subCounty",
-  "ward",
-  "village",
-  "nokFullname",
-  "isKlip",
-  "hasId",
-  "hasPassPort",
-];
+// const columns = [
+//   "user",
+//   "fullName",
+//   "idNo",
+//   "age",
+//   "ndviUnit",
+//   "houseHoldSize",
+//   "gender",
+//   "cattle",
+//   "goats",
+//   "sheep",
+//   "camels",
+//   "bankName",
+//   "branch",
+//   "bankACNo",
+//   "mobilePhoneNo",
+//   "county",
+//   "subCounty",
+//   "ward",
+//   "village",
+//   "nokFullname",
+//   "isKlip",
+//   "hasId",
+//   "hasPassPort",
+// ];
 
 const Registered = () => {
   const [data, setData] = useState([]);
@@ -74,17 +75,46 @@ const Registered = () => {
                 <LoadIndicator id="large-indicator" height={60} width={60} />
               </div>
             )}
-             {!isloading && <DataTable
-              columns={columns}
+             {!isloading && <Editable
               dataSource={data}
-              title="SYS Titles"
-              handlesave={handleSave}
-              handleDelete={handleDelete}
-              handleUpdate={handleUpdate}
+              title="Chambion Registered"
+              // handlesave={handleSave}
+              // handleDelete={handleDelete}
+              // handleUpdate={handleUpdate}
               width={500}
               height={350}
             >
-            </DataTable>}
+              <Column dataField="username" groupIndex={0} caption=" Field officer" />
+              <Column dataField="fullName" />
+              <Column dataField="idNo" />
+              <Column dataField="age" />
+              <Column dataField="ndviUnit" />
+              <Column dataField="houseHoldSize" />
+              <Column dataField="gender" />
+              <Column dataField="cattle" />
+              <Column dataField="goats" />
+              <Column dataField="sheep" />
+              <Column dataField="camels" />
+              <Column dataField="bankName" />
+              <Column dataField="branch" />
+              <Column dataField="bankACNo" />
+              <Column dataField="mobilePhoneNo" />
+              <Column dataField="county" />
+              <Column dataField="subCounty" />
+              <Column dataField="ward" />
+              <Column dataField="village" />
+              <Column dataField="nokFullname" />
+              <Column dataField="isKlip" />
+              <Column dataField="hasId" />
+              <Column dataField="hasPassPort" />
+              {/* <Column type="buttons">
+                <Button
+                  icon="edit"
+                  onClick={onAddButtonClick}
+                  visible={true}
+                />              
+              </Column>            */}
+            </Editable>}
           </div>
         </div>
       </div>
