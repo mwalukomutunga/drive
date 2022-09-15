@@ -52,13 +52,13 @@ const UserForm = () => {
   const [regions, setRegions] = useState([]);
   const [files, setFiles] = useState([]);
   const [ndviUnits, setNdviUnits] = useState([
-    { name: "Bangahiri" },
-    { name: "Chewani" },
-    { name: "Galole West" },
-    { name: "Garseni North" },
-    { name: "Kipao" },
-    { name: "Masache" },
-    { name: "WAMBA WEST" },
+    { name: "Wamba" },
+    { name: "Wamba west" },
+    { name: "Waso" },
+    { name: "Angaba" },
+    { name: "Nyiro" },
+    { name: "Ndoto" },
+    { name: "Elbana" },
   ]);
   const [counties, setCounties] = useState([]);
   const [subcounties, setSubCounties] = useState([]);

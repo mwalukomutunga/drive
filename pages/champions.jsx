@@ -83,8 +83,8 @@ const Chambion = () => {
               <Column dataField="village" />
               <Column dataField="nokFullname" />
               <Column dataField="isKlip" />
-              <Column dataField="hasId" />
-              <Column dataField="hasPassPort" />
+              <Column dataField="hasId" caption="Has ID"/>
+              <Column dataField="hasPassPort" caption="Has NOK ID"/>
               <Column type="buttons">
                 <Button
                   icon="edit"
