@@ -85,13 +85,13 @@ const Bio = () => {
         </div> */}
         <div className="mb-2 row">
           <label className="col-md-2 col-form-label">
-           Job Title
+          Supervisor
           </label>
           <div className="col-md-10">
             <input
               type="text"
               className="form-control"
-              placeholder="Job title"
+              placeholder="Supervisor"
               name="jobTitle"
               defaultValue={input?.jobTitle }
               onChange={handleInputChange}
