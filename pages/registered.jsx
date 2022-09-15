@@ -77,6 +77,7 @@ const Registered = () => {
               <Column dataField="ward" />
               <Column dataField="village" />
               <Column dataField="nokFullname" />
+              <Column dataField="createdAT" dataType="date" caption="Create At" />
               <Column dataField="isKlip" />
               <Column dataField="hasId" caption="Has ID"/>
               <Column dataField="hasPassPort" caption="Has NOK ID"/>
