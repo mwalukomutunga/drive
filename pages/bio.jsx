@@ -31,7 +31,7 @@ const Bio = () => {
   };
   const handleUpdate = (e) => {
     e.preventDefault();
-    requests.put("Auth/"+ + user?.user?.email, input).then((res) => {
+    requests.put("Auth/"+  user?.user?.email, input).then((res) => {
       router.push("/location");
     });
   };
